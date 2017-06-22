@@ -1,17 +1,19 @@
-export const voteReact = () => {
+const voteReact = () => {
 	return {
 		type: 'VOTE_REACT'
 	}
 }
 
-export const voteAngular = () => {
+const voteAngular = () => {
 	return {
 		type: 'VOTE_ANGULAR'
 	}
 }
 
-export const voteVuejs = () => {
+const voteVuejs = () => {
 	return {
 		type: 'VOTE_VUEJS'
 	}
 }
+
+export { voteReact, voteVuejs , voteAngular }

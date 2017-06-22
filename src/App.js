@@ -1,23 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 import { voteAngular, voteReact, voteVuejs } from './actions';
 import './App.css';
     
 
-class App extends React.Component {
+export const App = (vote) => {
 
-  constructor(props){
-    super(props)
-    console.log(props)
-    this.store = this.props.dispath;
-  }
-
-       handleVoteAngular()  {
-    this.props.dispatch(voteAngular());
-    console.log("angular")
-  }
-
-  render() {
      return(
          <div>
             <div className="jumbotron" style={{'textAlign':'center'}}>
@@ -27,31 +15,48 @@ class App extends React.Component {
               <br />
               <div className="row">
                 <div className="col-xs-offset-3 col-xs-2">
-                  <img src="angular_logo.png" height="96" alt="Angular" onClick={this.handleVoteAngular.bind(this)}></img>
+                  <img src="angular_logo.png" height="96" alt="Angular" onClick={() => vote.voteAngular()}></img>
                 </div>
                 <div className="col-xs-2">
-                  <img src="react_logo.png" height="96" alt="Angular" onClick={this.handleVoteReact}></img>
+                  <img src="react_logo.png" height="96" alt="Angular" onClick={() => vote.voteReact()}></img>
                 </div>
                 <div className="col-xs-2">
-                  <img src="vuejs_logo.png" height="96" alt="Angular" onClick={this.handleVoteVuejs}></img>
+                  <img src="vuejs_logo.png" height="96" alt="Angular" onClick={() => vote.voteVuejs()}></img>
                 </div>
               </div>
             </div>
          </div>
     );
+}
+
+const  mapStateToProps = (state) =>  {
+
+    console.log(state)
+    return {
+      angular: 0,
+      react: 0,
+      vuejs: 0
+    }
+    
   }
 
+const mapDispatchToProps = dispatch => {
 
+  return {
+     voteReact(){
+        dispatch(voteReact())
+     },
+     voteAngular(){
+        dispatch(voteAngular())
+     },
+     voteVuejs(){
+        dispatch(voteVuejs())
+     }     
+  }
+}
 
-    handleVoteReact = () => {
-    this.props.dispath(voteReact());
+const    handleVoteVuejs = () => {
+    //this.store.dispath(voteVuejs());
   }
 
-    handleVoteVuejs = () => {
-    this.store.dispath(voteVuejs());
-  }
-}      
-  
-  
-
-export default connect(voteAngular)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
