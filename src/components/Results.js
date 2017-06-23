@@ -16,38 +16,72 @@ class  Results extends Component {
 			return 0
 		}
 	}
+	votesReactInPercent() {
+		if (this.props.react) {
+			return (this.props.react / (this.props.angular 
+					+  this.props.react + this.props.vuejs)) * 100 
+		} else {
+			return 0
+		}
+	}
+	votesVuejsInPercent() {
+		if (this.props.vuejs) {
+			return (this.props.vuejs / (this.props.angular 
+					+  this.props.react + this.props.vuejs)) * 100 
+		} else {
+			return 0
+		}
+	}
 
+	votesAngularInPercentStyle () {
+		return {
+			width: this.votesAngularInPercent() + '%'
+		}
+	}
+
+	votesReactInPercentStyle () {
+		return {
+			width: this.votesReactInPercent() + '%'
+		}
+	}
+
+	votesVuejsInPercentStyle () {
+		return {
+			width: this.votesVuejsInPercent() + '%'
+		}
+	}
 render() {	
 	return (
 			<div>
 				<span className="label label-danger">
-					Angular: {this.votesAngularInPercent() + '%'}
+					Angular: {this.votesAngularInPercent().toFixed(2) + '%'}
 				</span>
 				<div className="progress progress-triped active">
-					<div className="progress-bar progress-bar-danger">
+					<div className="progress-bar progress-bar-danger" style={this.votesAngularInPercentStyle()}>
 
 					</div>
 				</div>
+			    <span className="label label-info">
+					React: {this.votesReactInPercent().toFixed(2) + '%'}
+				</span>
+				<div className="progress progress-triped active">
+					<div className="progress-bar progress-bar-danger" style={this.votesReactInPercentStyle()}>
+					
+					</div>
+				</div>
+				<span className="label label-success">
+					Vue.js: {this.votesVuejsInPercent().toFixed(2) + '%'}
+				</span>
+				<div className="progress progress-triped active">
+					<div className="progress-bar progress-bar-danger" style={this.votesVuejsInPercentStyle()}>
+					
+					</div>
+				</div>
 			</div>
+	
 		)
-}
+	}
 
-				/*<span className="label label-danger">
-					React: {votesReactInPercent().toFixed(2) + '%'}
-				</span>
-				<div className="progress progress-triped active">
-					<div className="progress-bar progress-bar-danger">
-					
-					</div>
-				</div>	
-				<span className="label label-danger">
-					Vue.js: {votesVuejsInPercent().toFixed(2) + '%'}
-				</span>
-				<div className="progress progress-triped active">
-					<div className="progress-bar progress-bar-danger">
-					
-					</div>
-				</div>*/
 }
 
 const mapStateToProps = store => {
