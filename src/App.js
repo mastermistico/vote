@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Results from './components/Results';
 import { voteAngular, voteReact, voteVuejs } from './actions';
 import './App.css';
     
@@ -25,6 +26,7 @@ export const App = (vote) => {
                 </div>
               </div>
             </div>
+            <Results />
          </div>
     );
 }
@@ -55,8 +57,5 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const    handleVoteVuejs = () => {
-    //this.store.dispath(voteVuejs());
-  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
